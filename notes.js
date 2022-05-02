@@ -3,15 +3,21 @@ showNotes();
 let addBtn = document.getElementById('addBtn');
 addBtn.addEventListener('click', function (e) {
     let addTxt = document.getElementById('addTxt');
+    let addTitle = document.getElementById('addTitle');
     let notes = localStorage.getItem('notes');
     if (notes == null) {
         notesArr = [];
     } else {
         notesArr = JSON.parse(notes);
     }
-    notesArr.push(addTxt.value);
+    let notesObj = {
+        tile: addTitle.value,
+        text: addTxt.value
+    }
+    notesArr.push(notesObj);
     localStorage.setItem('notes', JSON.stringify(notesArr));
     addTxt.value = '';
+    addTitle.value = '';
     showNotes(); //function to update newly added notes
 })
 
@@ -27,8 +33,8 @@ function showNotes() {
     notesArr.forEach(function (element, index) {
         html += `<div class="card note-card mx-2 my-2" style="width: 24rem;">
         <div class="card-body">
-          <h5 class="card-title">Note ${index+1}</h5>
-          <p class="card-text">${element}</p>
+          <h5 class="card-title">${element.tile}</h5>
+          <p class="card-text">${element.text}</p>
           <button href="#" class="btn btn-outline-danger" id="${index}" onclick="removeNote(this.id)">Remove Note</button>
         </div>
       </div>`;
