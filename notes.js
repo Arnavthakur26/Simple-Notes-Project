@@ -25,7 +25,7 @@ function showNotes() {
         notesArr = JSON.parse(notes)
     }
     notesArr.forEach(function (element, index) {
-        html += `<div class="card note-card my-2" style="width: 24rem;">
+        html += `<div class="card note-card mx-2 my-2" style="width: 24rem;">
         <div class="card-body">
           <h5 class="card-title">Note ${index+1}</h5>
           <p class="card-text">${element}</p>
